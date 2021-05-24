@@ -1,0 +1,11 @@
+.vscode
+
+django_auth/
+
+*.sqlite3
+
+*.pyc
+*.bak
+__pycache__
+
+migrations/
