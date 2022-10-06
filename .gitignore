@@ -1,6 +1,7 @@
 .vscode
 
 django_auth/
+venv/
 
 *.sqlite3
 

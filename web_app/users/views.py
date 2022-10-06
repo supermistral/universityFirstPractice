@@ -1,5 +1,5 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .models import User
 from .serializers import (
     UserSerializer, UserProfileSerializer, CustomTokenObtainPairSerializer
@@ -15,7 +15,7 @@ class UserCreateView(generics.CreateAPIView):
 class UserProfileView(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [IsAuthenticated, UserProfilePermission]
+    permission_classes = [UserProfilePermission]
     
     def get_object(self):
         return self.request.user
@@ -24,7 +24,7 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = [IsAuthenticated, SuperuserPermission]
+    permission_classes = [IsAdminUser]
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):

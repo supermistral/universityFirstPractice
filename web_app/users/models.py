@@ -19,7 +19,7 @@ class UserManager(BaseUserManager):
         if password is None:
             raise TypeError("A password is required")
 
-        user = self.create_user(email, password)
+        user = self.create_user(email, password, **kwargs)
         user.is_superuser = True
         user.is_staff = True
         user.save()
